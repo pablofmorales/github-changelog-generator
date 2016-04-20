@@ -56,7 +56,13 @@ module GitHubChangelogGenerator
       if issues.any?
         log += "#{prefix}\n\n" unless options[:simple_list]
         issues.each do |issue|
-          merge_string = get_string_for_issue(issue)
+
+          if issue[:title].include? " :: "
+            t = issue[:title].split(" :: ")
+            merge_string = "[\\##{t[0]}](https://jira.netwerven.nl/browse/" + t[0] + ") :: 1" + get_string_for_issue(issue)
+          else
+            merge_string = get_string_for_issue(issue)
+          end
           log += "- #{merge_string}\n"
         end
         log += "\n"
