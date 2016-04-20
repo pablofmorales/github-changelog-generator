@@ -59,7 +59,7 @@ module GitHubChangelogGenerator
 
           if issue[:title].include? " :: "
             t = issue[:title].split(" :: ")
-            merge_string = "[\\##{t[0]}](https://jira.netwerven.nl/browse/" + t[0] + ") :: " + get_string_for_issue(issue).sub("#{t[0]} :: ", "")
+            merge_string = "[\\#{t[0]}](https://jira.netwerven.nl/browse/" + t[0] + ") :: " + get_string_for_issue(issue).sub("#{t[0]} :: ", "")
           else
             merge_string = get_string_for_issue(issue)
           end
